@@ -393,11 +393,11 @@ def exercise(operator, pos):
                 mysql.connection.cursor(MySQLdb.cursors.DictCursor), mysql).exo_title(operator[5:])
             if "prof_" in operator and pos == "début":
                 # launcher exo
-                info_exo = ExerciseTable(mysql.connection.cursor(MySQLdb.cursors.DictCursor), mysql).place(operator, pos, request)
+                info_exo = ExerciseTable(mysql.connection.cursor(MySQLdb.cursors.DictCursor), mysql).place(operator, pos, title, request)
                 return render_template('exo/index.html', account=account, operator=operator, pos=pos, info=info_exo, title=title)
             else:
                 # aleatory exo
-                info_exo = ExerciseTable(mysql.connection.cursor(MySQLdb.cursors.DictCursor), mysql).place(operator, pos, request)
+                info_exo = ExerciseTable(mysql.connection.cursor(MySQLdb.cursors.DictCursor), mysql).place(operator, pos, title, request)
                 return render_template('exo/index.html', account=account, operator=operator, pos=pos, info=info_exo, title=title)
 
     # User is not loggedin redirect to login page

@@ -21,7 +21,7 @@ class ExerciseTable:
     def getResultQuestion(self, result, id):
         session['list_exo'][str(id)]['answer'] = str(result)
 
-    def place(self, operator, pos, request):
+    def place(self, operator, pos, title, request):
 
         if request.method == 'POST' and 'answer' in request.form:
             session['list_exo'][str(int(str(pos).split("-")[0])-1) if str(pos) != "résultat" else str(len(session['list_exo']))]['answer'] = str(request.form['answer'])
@@ -43,7 +43,7 @@ class ExerciseTable:
         elif str(pos) == "résultat":
             duration = time.time() - session['time']
             result = AnswerTable(self.cursor).resultTraining()
-            AnswerTable(self.cursor).addResultTrainingInBDD(self.mysql, result, operator, time.strftime("%H:%M:%S", time.gmtime(duration)))
+            AnswerTable(self.cursor).addResultTrainingInBDD(self.mysql, result, title, time.strftime("%H:%M:%S", time.gmtime(duration)))
 
             def format_time(timing, val):
                 return str(timing) + val
