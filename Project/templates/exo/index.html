@@ -1,0 +1,37 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}MathTaupe{% endblock %}
+
+{% block content %}
+<h2>Entrainement : {{ title }}</h2>
+
+{% if pos not in ["début", "résultat"] %}
+<p>Question n° {{ info['i'] }} :</p>
+{% endif %}
+
+<div>
+    {% if pos == "début" %}
+
+        <a href="{{ url_for('exercise', operator=operator, pos=info) }}"><button>Démarrer l'entrainement {{ title }}</button></a>
+
+    {% elif pos == "résultat" %}
+
+        <p>{{ info }}</p>
+
+        <a href="{{ url_for('home') }}"><button>Fin de l'entrainement : {{ title }}</button></a>
+
+    {% else %}
+
+    <p>{{ info['var']['question'] }}</p>
+        {% for resp in info['var']['possibility'] %}
+            <p>
+            <form action="{{ url_for('exercise', operator=operator, pos=info['f_pos']) }}" method="post">
+                <button class="btn btn-danger" type="submit" name="answer" value="{{ resp }}">{{ resp }}</button>
+            </form>
+    </p>
+        {% endfor %}
+
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}MathTaupe{% endblock %}
+
+{% block content %}
+<h2>Gestion des feuilles de révision</h2>
+
+<div>
+    <table>
+        <tr>
+            <td>feuilles de révision</td>
+            <td>
+                <a href="{{ url_for('list_exo_new') }}"><button><i class="fas fa-school"></i> Nouvelle feuilles de révision</button></a>
+            </td>
+        </tr>
+        {% if list_exos %}
+        {% for list_exo in list_exos %}
+        <tr>
+            <td>{{ list_exo['name'] }}</td>
+            <td>
+                <a href="{{ url_for('list_exo') }}"><button><i class="fas fa-home"></i> Editer (flemme de le faire pour un projet qui va servir 2 min)</button></a>
+                <a href="{{ url_for('list_exo_delete', id=list_exo['id_list_exo']) }}"><button><i class="fas fa-home"></i> Supprimer</button></a>
+            </td>
+
+        </tr>
+        {% endfor %}
+        {% endif %}
+
+    </table>
+</div>
+
+{% endblock %}

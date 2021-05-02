@@ -1,0 +1,31 @@
+{% extends 'layout/layout.html' %}
+
+{% block title %}MathTaupe{% endblock %}
+
+{% block content %}
+<h2>Gestion des Classes dans l'école : {{ school_name }}</h2>
+
+<div>
+    <table>
+        <tr>
+            <td>Classe</td>
+            <td>
+                <a href="{{ url_for('list_class_new') }}"><button><i class="fas fa-school"></i> Nouvelle Classe</button></a>
+            </td>
+        </tr>
+        {% if classes %}
+        {% for classe in classes %}
+        <tr>
+            <td>{{ classe['name'] }}</td>
+            <td>
+                <a href="{{ url_for('list_class_edit', id=classe['id']) }}"><button><i class="fas fa-home"></i> Editer</button></a>
+                <a href="{{ url_for('list_class_delete', id=classe['id']) }}"><button><i class="fas fa-home"></i> Supprimer</button></a>
+            </td>
+
+        </tr>
+        {% endfor %}
+        {% endif %}
+
+    </table>
+</div>
+{% endblock %}

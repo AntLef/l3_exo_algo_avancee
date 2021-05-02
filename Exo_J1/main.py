@@ -76,7 +76,7 @@ class BigSleep:
                 tab[min] = tmp
             return tab
 
-        tab = [98, 22, 15, 32, 2, 74, 63, 70]
+        tab = [95, 11, 25, 32, 86, 2, 63, 3]
 
         print("le tableau avant le tri est :", tab)
         sortBySelection(tab)
